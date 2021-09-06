@@ -1,14 +1,14 @@
 {
   "name": "@thaldrin/eu",
-  "version": "0.0.1",
-  "description": "Client 'Framework' for Thaldrin, a Discord/Revolt Chatbot",
+  "version": "0.0.1-discord",
+  "description": "Discord Client 'Framework' for Thaldrin, a Discord/Revolt Chatbot",
   "main": "build/index.js",
   "scripts": {
     "build": "rm -rf build/ && tsc",
     "dev": "nodemon --ignore \"build/\" -e js,ts --exec \"npm run build && ts-node test.ts\""
   },
   "keywords": [],
-  "author": "",
+  "author": "hokkqi <lion@himbo.cat>",
   "license": "ISC",
   "dependencies": {
     "@types/node": "^16.4.13",
