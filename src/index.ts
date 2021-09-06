@@ -1,3 +1,5 @@
 import EuDiscord from "./discord/index"
 import EuRevolt from "./revolt/index"
-export { EuDiscord as Discord, EuRevolt as Revolt }
+import Command from "./misc/command"
+
+export { EuDiscord as Discord, EuRevolt as Revolt, Command }

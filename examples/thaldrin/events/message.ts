@@ -1,12 +1,11 @@
 import { Event, Construct, EuClient, Command } from '../../../src/misc/types';
-import { Collection, Message, MessageEmbed } from "discord.js";
-import Eu from '../../../src/index'
 
 const prefix = '!';
 
 export = {
-    name: "messageCreate",
-    run: async (Eu: EuClient, message: Message) => {
+    name: "message",
+    run: async (Eu: EuClient, message: any) => {
+
         if (!message.content.startsWith(prefix) || message.author.bot) return;
 
         const args = message.content.slice(prefix.length).trim().split(/ +/g)
