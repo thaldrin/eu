@@ -8,8 +8,7 @@ let Thaldrin = new Eu.Client({
     events: join(__dirname, 'events',),
     options: {
         intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES]
-    },
-    config: {}
+    }
 })
 
 
