@@ -1,4 +1,5 @@
-import { Client, Collection } from "./imports";
+import { Client as DiscordClient, Collection } from "./imports";
+import { Client as RevoltClient } from "revolt.js";
 //  SlashCommand = {
 //     // Command Specific
 //     name: string
@@ -26,7 +27,6 @@ import { Client, Collection } from "./imports";
 
 declare namespace Eu {
     interface EuClient {
-        discord: Client,
         commands: Collection<string, Command>
         events: Collection<string, Event>
         cooldowns: Collection<unknown, unknown>
@@ -37,11 +37,14 @@ declare namespace Eu {
     }
 
     interface Construct {
+        discord?: DiscordClient
+        revolt?: RevoltClient
         events: string
         commands: string
         token: string
-        options: {
-            intents: any,
+        options?: {
+            intents?: any,
+            apiURL?: string,
         }
     }
     interface Command {

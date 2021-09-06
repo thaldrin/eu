@@ -1,7 +1,7 @@
 {
   "name": "@thaldrin/eu",
-  "version": "0.0.3-discord",
-  "description": "Discord Client 'Framework' for Thaldrin, a Discord/Revolt Chatbot",
+  "version": "0.0.4",
+  "description": "Discord/Revolt Client 'Framework' for Thaldrin",
   "main": "build/index.js",
   "scripts": {
     "build": "rm -rf build/ && tsc",
@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/node": "^16.4.13",
-    "discord.js": "^13.0.1"
+    "discord.js": "^13.0.1",
+    "revolt.js": "^5.0.1-alpha.7-patch.0"
   }
 }

@@ -1,8 +1,8 @@
-import Eu from '~/src/index'
+import { Discord, Revolt } from '~/src/index'
 import { join } from 'path'
 import { Intents } from '~/src/misc/imports'
 
-let Thaldrin = new Eu.Client({
+let Thaldrin = new Revolt.Client({
     token: 'no',
     commands: join(__dirname, 'commands'),
     events: join(__dirname, 'events',),
@@ -12,6 +12,6 @@ let Thaldrin = new Eu.Client({
 })
 
 
-Thaldrin.on('ready', () => {
+Thaldrin.on("ready", () => {
     console.log("ready")
 })

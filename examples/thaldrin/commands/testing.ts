@@ -1,9 +1,9 @@
 import { NSFW } from "../../../src/misc/decorators"
-import Eu from "../../../src/index"
+import Command from "../../../src/misc/command"
 
 
 
-export = class TestingCommand extends Eu.Command {
+export = class TestingCommand extends Command {
     constructor() {
         super({
             name: "testing",
