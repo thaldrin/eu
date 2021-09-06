@@ -1,26 +1,26 @@
 import { Collection, join, read, Client, Intents } from "./misc/imports";
-import { Construct, Command as CommandType, Event, IntentsString, EuClient } from "./misc/types";
-import Command from "./misc/command"
+import { Construct as ConstructType, Command as CommandType, Event as EventType } from "./misc/types";
 
+import Command from "./misc/command"
 
 class Eu extends Client {
     discord: Client;
-    events: Collection<string, Event>
+    events: Collection<string, EventType>
     commands: Collection<string, CommandType>
     // slashcommands?: Collection<string, SlashCommand>
     cooldowns: Collection<unknown, unknown>
     config: any
     #eval?: any
-    construct: Construct
-    constructor(Construct: Construct) {
+    construct: ConstructType
+    constructor(Construct: ConstructType) {
         super({
             intents: Construct.options.intents
         });
         this.commands = new Collection<string, CommandType>();
-        this.events = new Collection<string, Event>();
+        this.events = new Collection<string, EventType>();
         this.cooldowns = new Collection<unknown, unknown>();
         this.discord = this;
-        this.config = Construct.config;
+        // this.config = Construct.config;
 
         this.token = Construct.token;
         this.construct = Construct;
@@ -66,4 +66,5 @@ class Eu extends Client {
     }
 }
 
+// export type { EuClient, Construct, Command, Event } from "./misc/types"
 export default { Client: Eu, Command };

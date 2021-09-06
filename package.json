@@ -1,6 +1,6 @@
 {
   "name": "@thaldrin/eu",
-  "version": "0.0.1-discord",
+  "version": "0.0.3-discord",
   "description": "Discord Client 'Framework' for Thaldrin, a Discord/Revolt Chatbot",
   "main": "build/index.js",
   "scripts": {
