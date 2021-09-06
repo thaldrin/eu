@@ -12,7 +12,6 @@
   "license": "ISC",
   "dependencies": {
     "@types/node": "^16.4.13",
-    "discord.js": "^13.0.1",
-    "wavy": "^1.0.4"
+    "discord.js": "^13.0.1"
   }
 }
