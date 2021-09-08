@@ -1,4 +1,4 @@
-import Command from "../../../src/misc/command"
+import Command from "../../../../src/misc/command"
 
 
 
