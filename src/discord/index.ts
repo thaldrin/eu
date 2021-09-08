@@ -12,6 +12,8 @@ class Eu extends Client {
     config: any
     #eval?: any
     construct: ConstructType
+    devs?: string | string[];
+    commandCategories?: boolean;
     constructor(Construct: ConstructType) {
         super({
             intents: Construct?.options?.intents
@@ -21,6 +23,8 @@ class Eu extends Client {
         this.cooldowns = new Collection<unknown, unknown>();
         this.discord = this;
         // this.config = Construct.config;
+        this.devs = Construct.options?.devs
+        this.commandCategories = Construct.options?.commandCategories
         this.token = Construct.token;
         this.construct = Construct;
         this.load();
@@ -47,20 +51,41 @@ class Eu extends Client {
 
 
         // Filter out the Command files that don't end with js or ts
-        commands.filter(file => file.endsWith(".js") || file.endsWith(".ts")).forEach(file => {
-            try {
-                const Command = require(join(this.construct.commands, file));
-                const command = new Command();
+        if (this.commandCategories) {
+            commands.filter((f) => !f.endsWith(".js") && !f.endsWith(".ts")).forEach(async (folder) => {
+                const FolderCommands = await read(join(this.construct.commands, folder));
 
-                this.commands.set(command.name, command);
-                console.log(`Loaded Command: ${file}`);
-
-            } catch (error) {
-                console.error(error);
+                FolderCommands.filter(file => file.endsWith(".js") || file.endsWith(".ts")).forEach(file => {
+                    try {
+                        const command = require(join(this.construct.commands, folder, file));
+                        const c = new command()
+                        c.module = folder
+                        this.commands.set(command.name, command);
+                        console.log(`Loaded command: ${folder}/${file}`);
+                    } catch (error) {
+                        console.error(error);
+                    }
+                }
+                )
             }
-        })
+            )
 
+        }
+        // Filter out the Command files that don't end with js or ts
+        if (!this.commandCategories) {
+            commands.filter(file => file.endsWith(".js") || file.endsWith(".ts")).forEach(file => {
+                try {
+                    const Command = require(join(this.construct.commands, file));
+                    const command = new Command();
 
+                    this.commands.set(command.name, command);
+                    console.log(`Loaded Command: ${file}`);
+
+                } catch (error) {
+                    console.error(error);
+                }
+            })
+        }
     }
 }
 
