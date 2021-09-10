@@ -1,4 +1,4 @@
-import { Collection, join, read, Client, Intents } from "../misc/imports";
+import { Collection, join, read, Client, Intents, ShardingManager } from "../misc/imports";
 import { Construct as ConstructType, Command as CommandType, Event as EventType } from "../misc/types";
 
 import Command from "../misc/command"
@@ -90,4 +90,4 @@ class Eu extends Client {
 }
 
 // export type { EuClient, Construct, Command, Event } from "./misc/types"
-export default { Client: Eu, Command };
+export default { Client: Eu, Command, ShardingManager };
