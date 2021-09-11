@@ -81,6 +81,9 @@ declare namespace Eu {
         /** Other "Names" for the Command */
         aliases?: string[]
 
+        /** The function that is ran when the Command is called */
+        run(ctx: Command): void
+
 
     }
 
@@ -91,3 +94,4 @@ declare namespace Eu {
 }
 
 export = Eu
+
