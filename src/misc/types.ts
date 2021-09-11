@@ -46,6 +46,8 @@ declare namespace Eu {
              * Devs of the Bot, used for the Developer Commands
             */
             devs?: string | string[],
+            /** If the Framework should spit out Debug logs */
+            debug?: boolean
             /** 
              * If you want Eu to automatically set the Categories or if you want to do it manually
             */

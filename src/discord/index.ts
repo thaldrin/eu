@@ -14,6 +14,7 @@ class Eu extends Client {
     construct: ConstructType
     devs?: string | string[];
     commandCategories?: boolean;
+    console?: boolean | undefined;
     constructor(Construct: ConstructType) {
         super({
             intents: Construct?.options?.intents
@@ -22,6 +23,7 @@ class Eu extends Client {
         this.events = new Collection<string, EventType>();
         this.cooldowns = new Collection<unknown, unknown>();
         this.discord = this;
+        this.console = Construct?.options?.debug
         // this.config = Construct.config;
         this.devs = Construct.options?.devs
         this.commandCategories = Construct.options?.commandCategories
@@ -41,7 +43,7 @@ class Eu extends Client {
         events.filter(file => file.endsWith(".js") || file.endsWith(".ts")).forEach(file => {
             try {
                 const event = require(join(this.construct.events, file));
-                console.log(`Loaded event: ${file}`);
+                if (this.console) console.log(`Loaded event: ${file}`);
                 this.events.set(event.name, event);
                 this.on(event.name, event.run.bind(null, this));
             } catch (error) {
@@ -61,7 +63,7 @@ class Eu extends Client {
                         const c = new command()
                         c.module = folder
                         this.commands.set(command.name, command);
-                        console.log(`Loaded command: ${folder}/${file}`);
+                        if (this.console) console.log(`Loaded command: ${folder}/${file}`);
                     } catch (error) {
                         console.error(error);
                     }
@@ -79,7 +81,7 @@ class Eu extends Client {
                     const command = new Command();
 
                     this.commands.set(command.name, command);
-                    console.log(`Loaded Command: ${file}`);
+                    if (this.console) console.log(`Loaded Command: ${file}`);
 
                 } catch (error) {
                     console.error(error);
