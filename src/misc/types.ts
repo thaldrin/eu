@@ -82,7 +82,7 @@ declare namespace Eu {
         aliases?: string[]
 
         /** The function that is ran when the Command is called */
-        run(ctx: Command): void
+        run?(ctx: Command): void
 
 
     }
