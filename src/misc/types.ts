@@ -1,5 +1,6 @@
 import { Client as DiscordClient, Collection } from "./imports";
 import { Client as RevoltClient } from "revolt.js";
+import { Context } from "../../../../utils/types";
 
 declare namespace Eu {
     /**
@@ -64,7 +65,7 @@ declare namespace Eu {
         /** How long the command is unusable, usually for a single User */
         cooldown?: number
         /** The Permissinons needed for a Command to run */
-        permissions?: string | string[]
+        permissions?: string[]
         /** If the Command shows up in the Help Command */
         hidden?: boolean
         /** If the Command is only allowed to be ran in NSFW Channels */
@@ -82,7 +83,7 @@ declare namespace Eu {
         aliases?: string[]
 
         /** The function that is ran when the Command is called */
-        run?(ctx: Command): void
+        run?(ctx: Context): void
 
 
     }

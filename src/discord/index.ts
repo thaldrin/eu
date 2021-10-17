@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Collection, join, read, Client, Intents, ShardingManager } from "../misc/imports";
 import { Construct as ConstructType, Command as CommandType, Event as EventType } from "../misc/types";
 
@@ -40,7 +41,7 @@ class Eu extends Client {
         // const slashcommands = await read(join(__dirname, this.construct.slashcommands));
 
         // Filter out the Event files that don't end with js or ts
-        events.filter(file => file.endsWith(".js") || file.endsWith(".ts")).forEach(file => {
+        events.filter(file => file.endsWith(".js") || file.endsWith(".ts") && !file.endsWith(".d.ts")).forEach(file => {
             try {
                 const event = require(join(this.construct.events, file));
                 if (this.console) console.log(`Loaded event: ${file}`);
@@ -54,10 +55,10 @@ class Eu extends Client {
 
         // Filter out the Command files that don't end with js or ts
         if (this.commandCategories) {
-            commands.filter((f) => !f.endsWith(".js") && !f.endsWith(".ts")).forEach(async (folder) => {
+            commands.filter((f) => !f.endsWith(".js") || !f.endsWith(".ts") && !file.endsWith(".d.ts")).forEach(async (folder) => {
                 const FolderCommands = await read(join(this.construct.commands, folder));
 
-                FolderCommands.filter(file => file.endsWith(".js") || file.endsWith(".ts")).forEach(file => {
+                FolderCommands.filter(file => file.endsWith(".js") || file.endsWith(".ts") && !file.endsWith(".d.ts")).forEach(file => {
                     try {
                         const command = require(join(this.construct.commands, folder, file));
                         const c = new command()
@@ -75,7 +76,7 @@ class Eu extends Client {
         }
         // Filter out the Command files that don't end with js or ts
         if (!this.commandCategories) {
-            commands.filter(file => file.endsWith(".js") || file.endsWith(".ts")).forEach(file => {
+            commands.filter(file => file.endsWith(".js") || file.endsWith(".ts") && !file.endsWith(".d.ts")).forEach(file => {
                 try {
                     const Command = require(join(this.construct.commands, file));
                     const command = new Command();
