@@ -55,15 +55,16 @@ class Eu extends Client {
 
         // Filter out the Command files that don't end with js or ts
         if (this.commandCategories) {
-            commands.filter((f) => !f.endsWith(".js") || !f.endsWith(".ts") && !file.endsWith(".d.ts")).forEach(async (folder) => {
+            commands.filter((f) => f.endsWith(".js") || !f.endsWith(".ts")).forEach(async (folder) => {
                 const FolderCommands = await read(join(this.construct.commands, folder));
 
-                FolderCommands.filter(file => file.endsWith(".js") || file.endsWith(".ts") && !file.endsWith(".d.ts")).forEach(file => {
+                FolderCommands.filter(file => file.endsWith(".js") || file.endsWith(".ts") && !file.endsWith(".d.ts")).forEach(async file => {
                     try {
                         const command = require(join(this.construct.commands, folder, file));
                         const c = new command()
                         c.module = folder
-                        this.commands.set(command.name, command);
+
+                        this.commands.set(c.name, c);
                         if (this.console) console.log(`Loaded command: ${folder}/${file}`);
                     } catch (error) {
                         console.error(error);
@@ -76,7 +77,7 @@ class Eu extends Client {
         }
         // Filter out the Command files that don't end with js or ts
         if (!this.commandCategories) {
-            commands.filter(file => file.endsWith(".js") || file.endsWith(".ts") && !file.endsWith(".d.ts")).forEach(file => {
+            commands.filter(file => file.endsWith(".js") || file.endsWith(".ts") && !file.endsWith(".d.ts")).forEach(async file => {
                 try {
                     const Command = require(join(this.construct.commands, file));
                     const command = new Command();

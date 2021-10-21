@@ -16,7 +16,7 @@
     "charset": "UTF-8",
     "downlevelIteration": true,
     "newLine": "lf",
-    "strict": true,
+    "strict": false,
     "experimentalDecorators": true,
     "strictBindCallApply": true,
     "strictPropertyInitialization": false,
