@@ -6,7 +6,7 @@ declare namespace Eu {
     /**
      * The Main Client, universal between both Discord and Revolt
      */
-    interface EuClient {
+    interface EuClient extends DiscordClient {
         /** 
          * Collection of Commands using Discord.JS Collection functionality
          */
